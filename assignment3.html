@@ -14,9 +14,9 @@
       <button id="loginButton">Login</button>
     </div>
     <div id="quiz" style="display: none">
-      <div id="progress">
+      <div id="progressbar">
         Question <span id="currentQuestion">1</span> of
-        <span id="totalQuestions">2</span>
+        <span id="totalQuestions">3</span>
       </div>
       <form id="quizForm">
         <div class="questions">
@@ -47,19 +47,22 @@
     </div>
     <script>
       //This function will handle the click event for the login button
-      document
-        .getElementById("loginButton")
-        .addEventListener("click", function () {
-          const studentid = document.getElementById("studentid").value;
-          const password = document.getElementById("password").value;
-          //This function will verify authentication in this case it is fake, so as long as the fields are not empty hence, the !==, it will allow the user to proceed
-          if (studentid !== "" && password !== "") {
-            document.getElementById("authentication").style.display = "none"; // Hides authentication if fields are valid
-            document.getElementById("quiz").style.display = "block"; // lets user view quiz if authentication is approved
-          } else {
-            alert("StudentID or Password Invalid"); //will give alert if either of the fields are left blank
-          }
-        });
+        document
+          .getElementById("loginButton")
+          .addEventListener("click", function () {
+            const studentid = document.getElementById("studentid").value; //recalls value input
+            const password = document.getElementById("password").value; //recalls value input
+            //This function will verify authentication in this case it is fake, so as long as the fields are not empty hence, the !==, it will allow the user to proceed
+            if (studentid !== "" && password !== "") {
+              document.getElementById("authentication").style.display = "none"; // Hides authentication if fields are valid
+              document.getElementById("quiz").style.display = "block"; // lets user view quiz if authentication is approved
+            } else {
+              alert("StudentID or Password Invalid"); //will give alert if either of the fields are left blank
+            }
+          });
+
+      // this function will handle the progressbar
+      const
     </script>
   </body>
 </html>
