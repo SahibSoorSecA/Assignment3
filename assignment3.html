@@ -44,25 +44,66 @@
         </div>
         <button type="button" id="submitQuiz">Submit</button>
       </form>
+      <div id="results" style="display: none">
+        <p>You scored: <span id="score"></span></p>
+      </div>
     </div>
     <script>
       //This function will handle the click event for the login button
-        document
-          .getElementById("loginButton")
-          .addEventListener("click", function () {
-            const studentid = document.getElementById("studentid").value; //recalls value input
-            const password = document.getElementById("password").value; //recalls value input
-            //This function will verify authentication in this case it is fake, so as long as the fields are not empty hence, the !==, it will allow the user to proceed
-            if (studentid !== "" && password !== "") {
-              document.getElementById("authentication").style.display = "none"; // Hides authentication if fields are valid
-              document.getElementById("quiz").style.display = "block"; // lets user view quiz if authentication is approved
-            } else {
-              alert("StudentID or Password Invalid"); //will give alert if either of the fields are left blank
-            }
-          });
+      document
+        .getElementById("loginButton")
+        .addEventListener("click", function () {
+          const studentid = document.getElementById("studentid").value; //recalls value input
+          const password = document.getElementById("password").value; //recalls value input
+          //This function will verify authentication in this case it is fake, so as long as the fields are not empty hence, the !==, it will allow the user to proceed
+          if (studentid !== "" && password !== "") {
+            document.getElementById("authentication").style.display = "none"; // Hides authentication if fields are valid
+            document.getElementById("quiz").style.display = "block"; // lets user view quiz if authentication is approved
+          } else {
+            alert("StudentID or Password Invalid"); //will give alert if either of the fields are left blank
+          }
+        });
 
       // this function will handle the progressbar
-      const
+      const totalQuestions = document.querySelectorALL(".questions").length; //selects all elements on 'questions' div
+      document.getElementById("totalQuestions").textContent = totalQuestions; // Displays the number of questions in the quiz from totalQuestions span element
+      // now we use let statements to set the questions counter to 1
+      let currentQuestion = 1;
+      document.getElementById("currentQuestion").textContent = currentQuestion; // Displays the current question counter value in the currentQuestion ID from progress div
+      // now we will add an event listener to aknowledge the quiz submission
+      document
+        .getElementById("submitQuiz")
+        .addEventListener("click", function () {
+          // now we can start the counter for the score
+          let score = 0;
+          // declare the right answers so we can run if else to mark the quiz
+          const answers = {
+            q1: "Murder",
+            q2: "China",
+            q3: "Jack the Ripper",
+          };
+
+          // declare the form inputs from the 'quizForm'
+          const formElements = document.getElementById("quizForm").elements;
+          // now we compare inputs to the correct answers and mark the quiz
+          for (let answer in answers) {
+            const userAnswer = formElements[answer].value; // declare the value inputed by user as a constant called userAnswer
+            if (userAnswer === answers[answer]) {
+              //if statement confirms the input is equal to the correct answer using ===
+              formElements[answer], parentElement.classList.add("correct"); //adds 'correct' to parent element if condition is met
+              score++; //adds 1 to the score counter (increment increase)
+            } else {
+              formElements[answer].parentElement.classList.add("incorrect"); // if condition is not met, no score is added and incorrect is added to parent element
+            }
+          }
+          // now we change the display style for results from none to block to show the section
+          document.getElementById("results").style.display = "block";
+          // now we can display the final results of the quiz to the user
+          document.getElementById("score").textContent = score;
+          currentQuestion++; //incremental increase in progress bar
+          document.getElementById("currentQuestion").textContent =
+            currentQuestion;
+        });
     </script>
   </body>
 </html>
