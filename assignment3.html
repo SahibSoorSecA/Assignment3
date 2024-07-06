@@ -65,7 +65,7 @@
         });
 
       // this function will handle the progressbar
-      const totalQuestions = document.querySelectorALL(".questions").length; //selects all elements on 'questions' div
+      const totalQuestions = document.querySelectorAll(".questions").length; //selects all elements on 'questions' div
       document.getElementById("totalQuestions").textContent = totalQuestions; // Displays the number of questions in the quiz from totalQuestions span element
       // now we use let statements to set the questions counter to 1
       let currentQuestion = 1;
@@ -90,7 +90,7 @@
             const userAnswer = formElements[answer].value; // declare the value inputed by user as a constant called userAnswer
             if (userAnswer === answers[answer]) {
               //if statement confirms the input is equal to the correct answer using ===
-              formElements[answer], parentElement.classList.add("correct"); //adds 'correct' to parent element if condition is met
+              formElements[answer].parentElement.classList.add("correct"); //adds 'correct' to parent element if condition is met
               score++; //adds 1 to the score counter (increment increase)
             } else {
               formElements[answer].parentElement.classList.add("incorrect"); // if condition is not met, no score is added and incorrect is added to parent element
