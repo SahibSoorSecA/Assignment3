@@ -1,0 +1,1 @@
+To implement the code any text entry into the boxes would grant authenetication. Questions are displayed all together on the page. Once the user selects the answers and clicks submit the results will show on the page. the incorrect answers will be highlighted in red, and the correct ones in green wll show.
