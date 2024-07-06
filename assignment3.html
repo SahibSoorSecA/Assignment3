@@ -87,13 +87,16 @@
           const formElements = document.getElementById("quizForm").elements;
           // now we compare inputs to the correct answers and mark the quiz
           for (let answer in answers) {
-            const userAnswer = formElements[answer].value; // declare the value inputed by user as a constant called userAnswer
-            if (userAnswer === answers[answer]) {
+            const userAnswer = document.querySelector(
+              `input[name="${answer}"]:checked`
+            );
+            if (userAnswer && userAnswer.value === answers[answer]) {
               //if statement confirms the input is equal to the correct answer using ===
-              formElements[answer].parentElement.classList.add("correct"); //adds 'correct' to parent element if condition is met
+              userAnswer.parentElement.classList.add("correct"); //adds 'correct' to parent element if condition is met
               score++; //adds 1 to the score counter (increment increase)
             } else {
-              formElements[answer].parentElement.classList.add("incorrect"); // if condition is not met, no score is added and incorrect is added to parent element
+              userAnswer.parentElement.classList.add("incorrect");
+              // if condition is not met, no score is added and incorrect is added to parent element
             }
           }
           // now we change the display style for results from none to block to show the section
